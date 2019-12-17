@@ -1,0 +1,4 @@
+{
+  "apiUrl": "http://map.mykhailonehelia.com/api.php",
+  "geoJSONPath": "/geo/uk.json"
+}

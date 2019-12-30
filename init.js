@@ -1,8 +1,12 @@
 (function() {
-
+  console.log("_appConfig", window._appConfig);
+  if(window._appConfig) {
+    window._appConfig = {
+      baseUrl : ''
+    }
+  }
   var head = document.getElementsByTagName("head")[0],
     config = {
-      "baseUrl": "",
       "css": [
         "/css/leaflet.css",
         "/css/chunk-vendors.css",
@@ -34,10 +38,10 @@
 
 
   for (var i in config.css) {
-    loadCss(config.baseUrl + config.css[i]);
+    loadCss(window._appConfig.baseUrl + config.css[i]);
   }
 
   for (var i in config.js) {
-    loadJs(config.baseUrl + config.js[i]);
+    loadJs(window._appConfig.baseUrl + config.js[i]);
   }
 })();

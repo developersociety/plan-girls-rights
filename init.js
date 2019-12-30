@@ -2,7 +2,7 @@
 
   var head = document.getElementsByTagName("head")[0],
     config = {
-      "baseUrl": "",
+      "baseUrl": "https://plan-girls-rights.devdemo.org",
       "css": [
         "/css/leaflet.css",
         "/css/chunk-vendors.css",

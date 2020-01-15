@@ -1,6 +1,6 @@
 (function() {
   console.log("_appConfig", window._appConfig);
-  if(!window._appConfig) {
+  if(window._appConfig) {
     window._appConfig = {
       baseUrl : ''
     }

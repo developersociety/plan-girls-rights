@@ -1,15 +1,15 @@
 (function() {
-  console.log("_appConfig", window._appConfig);
-  if(window._appConfig) {
-    window._appConfig = {
-      baseUrl : ''
+
+  if (!window.PGRConfig) {
+    window.PGRConfig = {
+      baseUrl: ''
     }
   }
+
   var head = document.getElementsByTagName("head")[0],
     config = {
       "css": [
         "/css/leaflet.css",
-        "/css/chunk-vendors.css",
         "/css/app.css"
       ],
       "js": [
@@ -28,20 +28,46 @@
     head.appendChild(link);
   }
 
-  function loadJs(url) {
-    var script = document.createElement("script")
+  function loadJs(url, callback) {
+    console.log('Loading JS', url);
+    var script = document.createElement("script");
+
+    if (script.readyState) { //IE
+      script.onreadystatechange = function() {
+        if (script.readyState == "loaded" ||
+          script.readyState == "complete") {
+          script.onreadystatechange = null;
+          callback();
+        }
+      };
+    } else { //Others
+      script.onload = function() {
+        callback();
+      };
+    }
+
     script.type = "text/javascript";
     document.body.appendChild(script);
     script.src = url + "?v=" + version;
   }
 
 
-
-  for (var i in config.css) {
-    loadCss(window._appConfig.baseUrl + config.css[i]);
+  function loadJsByIndex(index) {
+    if(index < config.js.length) {
+      loadJs(window.PGRConfig.baseUrl + config.js[index], function() {
+        index++;
+        loadJsByIndex(index);
+      })
+    } else {
+      console.log("JS loaded!");
+    }
   }
 
-  for (var i in config.js) {
-    loadJs(window._appConfig.baseUrl + config.js[i]);
+
+  for (var i = 0; i < config.css.length; i++) {
+    loadCss(window.PGRConfig.baseUrl + config.css[i]);
   }
+
+  loadJsByIndex(0);
+
 })();

@@ -5,16 +5,20 @@
       "events": {
         "markerClick": function(latLng) {
           // latLng = { lat: <lat>, lng: <lng>}
-          console.log("markerClick", latLng.lat, latLng.lng);
+          console.log("markerClick", '' + latLng.lat + ', ' +latLng.lng);
+          ga('send', 'event', 'marker', 'click', '' + latLng.lat + ', ' +latLng.lng);
         },
         "tagClick": function(tag) {
-          console.log("tagClick", tag);
+          console.log("tagClick", '' + tag);
+          ga('send', 'event', 'tag', 'click', '' + tag);
         },
-        "locationSelect" : function(location) {
-          console.log("locationSelect", location);
+        "locationSelect": function(location) {
+          console.log("locationSelect", '' + location);
+          ga('send', 'event', 'location', 'click', '' + location);
         },
-        "storyOpen" : function(story) {
-          console.log("storyOpen", story);
+        "storyOpen": function(story) {
+          console.log("storyOpen", '' + story.name + ', ' + story.location);
+          ga('send', 'event', 'story', 'click', '' + story.name + ', ' + story.location);
         }
       }
     };</script><script src=/js/chunk-vendors.js></script><script src=/js/app.js></script></body></html>

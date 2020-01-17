@@ -1,8 +1,6 @@
 
   <noscript><strong>We're sorry but uk-map doesn't work properly without JavaScript enabled. Please enable it to continue.</strong></noscript>
-  <div style=display:block;height:400px;background:darkred>space</div>
   <div id=app csv=data.csv></div>
-  <div style=display:block;height:400px;background:darkred>space</div>
   <script>
     window.PGRConfig = {
       "baseUrl": "https://plan-girls-rights.devdemo.org",
@@ -11,16 +9,24 @@
       "events": {
         "markerClick": function(latLng) {
           // latLng = { lat: <lat>, lng: <lng>}
-          console.log("markerClick", latLng.lat, latLng.lng);
+          console.log("markerClick", '' + latLng.lat + ', ' +latLng.lng);
+          //ga('send', 'event', 'marker', 'click', '' + latLng.lat + ', ' +latLng.lng);
+          gtag('event','click',{'event_category':'Map','event_label':'marker-click', '' + latLng.lat + ', ' +latLng.lng});
         },
         "tagClick": function(tag) {
-          console.log("tagClick", tag);
+          console.log("tagClick", '' + tag);
+          // ga('send', 'event', 'tag', 'click', '' + tag);
+          gtag('event','click',{'event_category':'Map','event_label':'tag-click', '' + tag});
         },
         "locationSelect": function(location) {
-          console.log("locationSelect", location);
+          console.log("locationSelect", '' + location);
+          // ga('send', 'event', 'location', 'click', '' + location);
+          gtag('event','click',{'event_category':'Map','event_label':'location-select', '' + location});
         },
         "storyOpen": function(story) {
-          console.log("storyOpen", story);
+          console.log("storyOpen", '' + story.name + ', ' + story.location);
+          // ga('send', 'event', 'story', 'click', '' + story.name + ', ' + story.location);
+          gtag('event','click',{'event_category':'Map','event_label':'story-view', '' + story.name + ', ' + story.location});
         }
       }
     };

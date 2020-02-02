@@ -1,5 +1,5 @@
-# plan-girls-rights
-This is a store for the static github pages hosting
+# Plan UK - Girls' rights stories 2020 map
+*This is a store for the static github pages hosting*
 
 
 Live map for Plan UK:
